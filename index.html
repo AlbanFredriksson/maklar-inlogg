@@ -294,15 +294,15 @@
     /* ── LOGIN MODAL ── */
     .modal-backdrop{position:fixed;inset:0;z-index:500;background:rgba(4,24,45,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .2s ease}
     .modal-backdrop.open{opacity:1;pointer-events:all}
-    .modal-card{display:grid;grid-template-columns:1fr minmax(300px,42%);width:100%;max-width:1000px;height:min(720px,calc(100vh - 64px));border-radius:20px;box-shadow:0 32px 80px rgba(0,0,0,.35);background:#fff;overflow:hidden;transform:translateY(16px) scale(.98);transition:transform .25s ease,opacity .25s ease;opacity:0;position:relative}
+    .modal-card{display:grid;grid-template-columns:1fr minmax(320px,46%);width:100%;max-width:960px;height:min(620px,calc(100vh - 64px));border-radius:20px;box-shadow:0 32px 80px rgba(0,0,0,.35);background:#fff;overflow:hidden;transform:translateY(16px) scale(.98);transition:transform .25s ease,opacity .25s ease;opacity:0;position:relative}
     .modal-close{position:absolute;top:16px;right:16px;z-index:10;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s;backdrop-filter:blur(4px)}
     .modal-close:hover{background:rgba(255,255,255,.3)}
     .modal-backdrop.open .modal-card{transform:translateY(0) scale(1);opacity:1}
     :root{--blue:#0b3c78;--blue-d:#072a55;--blue-50:#eef3fb;--blue-100:#dbe6f6;--ink:#141a26;--muted:#5a6476;--line:#d9dfe8;--bg:#f5f5f5;--white:#fff;--err:#b42318;--err-bg:#fef3f2;--err-line:#fecdca;--radius:10px}
 
     /* panel */
-    .m-panel{background:#fff;display:flex;flex-direction:column;padding:16px 32px;height:100%}
-    .m-form-wrap{margin:auto;width:100%;max-width:400px;padding:12px 0;display:flex;flex-direction:column;justify-content:center}
+    .m-panel{background:#fff;display:flex;flex-direction:column;justify-content:center;padding:32px 32px;height:100%}
+    .m-form-wrap{width:100%;max-width:400px;margin:0 auto;display:flex;flex-direction:column;}
     .m-form-wrap h2{font-family:'Poppins',sans-serif;font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:2px;color:var(--ink)}
     .m-sub{color:var(--muted);font-size:14px;margin-bottom:14px;font-family:'Poppins',sans-serif}
     .m-field{margin-bottom:10px}
@@ -319,14 +319,14 @@
     .m-btn{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;background:var(--blue);color:#fff;border:0;border-radius:var(--radius);padding:11px;font-family:'Poppins',sans-serif;font-size:14.5px;font-weight:600;margin-top:4px;transition:background .15s;cursor:pointer}
     .m-btn:hover{background:var(--blue-d)}
     .m-forgot{text-align:right;margin-top:14px;margin-bottom:24px}
-    .m-forgot a{font-size:13.5px;font-weight:500;color:var(--blue);text-decoration:none}
+    .m-forgot a{font-size:14px;font-weight:500;color:var(--blue);text-decoration:none}
     .m-help{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:var(--radius);background:#fff;border:1px solid var(--line)}
     .m-help-icon{flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue-50);color:var(--blue);display:grid;place-items:center}
-    .m-help strong{display:block;font-size:14.5px;font-weight:600;color:var(--ink);font-family:'Poppins',sans-serif;margin-bottom:2px}
+    .m-help strong{display:block;font-size:16px;font-weight:600;color:var(--ink);font-family:'Poppins',sans-serif;margin-bottom:2px}
     .m-help p{font-size:14px;color:var(--muted);line-height:1.55;font-family:'Poppins',sans-serif}
     .m-help a{font-weight:600;white-space:nowrap;color:var(--blue)}
     .m-back{padding-bottom:20px;width:100%;max-width:400px;margin:0 auto}
-    .m-back a{font-size:13px;color:var(--blue);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px;font-family:'Poppins',sans-serif}
+    .m-back a{font-size:14px;color:var(--blue);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px;font-family:'Poppins',sans-serif}
 
     /* image side */
     .m-image{margin:10px 10px 10px 0;border-radius:16px;overflow:hidden;position:relative}
@@ -340,8 +340,8 @@
     .m-features{list-style:none;display:grid;gap:14px}
     .m-features li{display:flex;gap:12px;align-items:flex-start}
     .m-features .fi{flex:none;width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center}
-    .m-features strong{display:block;font-weight:500;font-size:14px;font-family:'Poppins',sans-serif}
-    .m-features span{font-size:12.5px;opacity:.75;line-height:1.5;font-family:'Poppins',sans-serif}
+    .m-features strong{display:block;font-weight:500;font-size:16px;font-family:'Poppins',sans-serif}
+    .m-features span{font-size:14px;opacity:.75;line-height:1.5;font-family:'Poppins',sans-serif}
 
   </style>
 </head>
@@ -384,7 +384,7 @@
             <div class="m-help-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
             <div>
               <strong>Saknar du konto?</strong>
-              <p>Mejla <a href="mailto:support@bovision.se">support@bovision.se</a> så ordnar vi det.</p>
+              <p>Mejla oss på <a href="mailto:support@bovision.se" style="text-decoration:none">support@bovision.se</a> så hjälper vi dig.</p>
             </div>
           </div>
         </div>
@@ -397,7 +397,7 @@
           <ul class="m-features">
             <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg></div><div><strong>Intresseanmälningar</strong><span>Se vem som visat intresse för dina objekt.</span></div></li>
             <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M17 11l2 2 4-4"/></svg></div><div><strong>Leads</strong><span>Följ upp potentiella säljare och köpare.</span></div></li>
-            <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/></svg></div><div><strong>Fakturering</strong><span>Överblick över fakturor och annonskostnader.</span></div></li>
+            <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/></svg></div><div><strong>Fakturering</strong><span>Hantera fakturor enkelt.</span></div></li>
           </ul>
         </div>
       </div>
@@ -451,17 +451,8 @@
   <section class="hero">
     <div class="hero__bg">
       <div class="hero__slide active" style="background-image: url('hero1.jpg')"></div>
-      <div class="hero__slide" style="background-image: url('hero2.jpg')"></div>
-      <div class="hero__slide" style="background-image: url('hero3.jpg')"></div>
-      <div class="hero__slide" style="background-image: url('hero4.jpg')"></div>
     </div>
     <div class="hero__overlay"></div>
-    <div class="hero__indicators">
-      <div class="hero__indicator active"><div class="hero__indicator-fill"></div></div>
-      <div class="hero__indicator"><div class="hero__indicator-fill"></div></div>
-      <div class="hero__indicator"><div class="hero__indicator-fill"></div></div>
-      <div class="hero__indicator"><div class="hero__indicator-fill"></div></div>
-    </div>
 
     <div class="hero__content">
       <h1 class="hero__title">Sök bland tusentals bostäder i Sverige och utomlands</h1>
@@ -480,39 +471,6 @@
   </section>
 
 <script>
-  const slides = document.querySelectorAll('.hero__slide');
-  const indicators = document.querySelectorAll('.hero__indicator');
-  let current = 0;
-
-  function goTo(index) {
-    const prev = current;
-    slides[prev].classList.remove('active');
-    indicators[prev].classList.remove('active');
-
-    // Håll passerade indikatorer fyllda
-    const prevFill = indicators[prev].querySelector('.hero__indicator-fill');
-    prevFill.style.animation = 'none';
-    prevFill.style.width = index > prev ? '100%' : '0%';
-
-    current = index % slides.length;
-    slides[current].classList.add('active');
-    indicators[current].classList.add('active');
-
-    const fill = indicators[current].querySelector('.hero__indicator-fill');
-    fill.style.animation = 'none';
-    fill.style.width = '0%';
-    fill.offsetHeight;
-    fill.style.animation = 'fillProgress 8s linear forwards';
-  }
-
-  indicators.forEach((ind, i) => ind.addEventListener('click', () => {
-    clearInterval(timer);
-    goTo(i);
-    timer = setInterval(() => goTo(current + 1), 8000);
-  }));
-
-  let timer = setInterval(() => goTo(current + 1), 8000);
-
   // Dropdown
   const dropdown = document.getElementById('loginDropdown');
   const toggle = document.getElementById('loginToggle');
