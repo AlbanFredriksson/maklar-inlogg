@@ -1,179 +1,546 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="sv">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Content Card – Bovision</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --blue:#0b3c78; --blue-d:#072a55; --blue-dd:#051f40;
-  --blue-50:#eef3fb; --blue-100:#dbe6f6;
-  --ink:#141a26; --muted:#5a6476; --line:#d9dfe8; --bg:#f5f5f5; --white:#fff;
-  --err:#b42318; --err-bg:#fef3f2; --err-line:#fecdca;
-  --radius:10px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:Poppins,system-ui,sans-serif;color:var(--ink);background:#f5f5f5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
-a{color:var(--blue)}
-button{font-family:inherit;cursor:pointer}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bovision – Redesign</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.layout{display:grid;grid-template-columns:1fr minmax(320px,42%);width:100%;max-width:1050px;height:min(760px,calc(100vh - 64px));border-radius:20px;box-shadow:0 32px 80px rgba(0,0,0,.22);background:#fff;overflow:hidden}
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      background-color: #FCFCFC;
+    }
 
-/* ---------- Form panel ---------- */
-.panel{background:#fff;display:flex;flex-direction:column;padding:16px 32px;height:100%}
-.topbar{display:flex;justify-content:flex-end;align-items:center;min-height:32px;width:100%;max-width:420px;margin:0 auto}
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: #093E78;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+    }
 
-.form-wrap{margin:auto;width:100%;max-width:420px;padding:12px 0 32px;display:flex;flex-direction:column;justify-content:center}
-.form-wrap h2{font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:2px}
-.sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+    .header__inner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
 
-.field{margin-bottom:10px}
-.label-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
-label{font-size:14px;font-weight:500}
-.input{position:relative}
-input{width:100%;font-family:inherit;font-size:14px;color:var(--ink);padding:11px 14px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:border-color .15s,box-shadow .15s}
-input::placeholder{color:#9aa3b2}
-input:hover{border-color:#b9c2cf}
-input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,60,120,.12)}
-.has-err input{border-color:var(--err)}
-.has-err input:focus{box-shadow:0 0 0 4px rgba(180,35,24,.12)}
-.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--muted);width:40px;height:40px;border-radius:8px;display:grid;place-items:center}
-.eye:hover{background:var(--blue-50);color:var(--ink)}
-input[type=password],#pw{padding-right:52px}
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
 
-.btn{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;background:var(--blue);color:#fff;border:0;border-radius:var(--radius);padding:11px;font-size:14.5px;font-weight:600;margin-top:4px;transition:background .15s,transform .1s}
-.btn:hover{background:var(--blue-d)}
-.btn:active{transform:scale(.99)}
-.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite;display:none}
-.loading .spin{display:block}
-@keyframes s{to{transform:rotate(360deg)}}
+    .logo-text {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
 
-.alert{display:none;gap:12px;padding:14px 16px;border-radius:var(--radius);background:var(--err-bg);border:1px solid var(--err-line);color:var(--err);font-size:14px;line-height:1.55;margin-bottom:24px}
-.alert.on{display:flex;animation:in .2s ease-out}
-.alert a{color:inherit;font-weight:600}
-@keyframes in{from{opacity:0;transform:translateY(-4px)}}
+    .logo-badge {
+      background-color: #FF5E00;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: center;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-.divider{display:flex;align-items:center;gap:14px;color:#9aa3b2;font-size:12.5px;margin:12px 0 10px}
-.divider::before,.divider::after{content:"";height:1px;flex:1;background:var(--line)}
+    .logo-badge small {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
 
-.help{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:var(--radius);background:#fff;border:1px solid var(--line)}
-.help .hi{flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue-50);color:var(--blue);display:grid;place-items:center}
-.help strong{display:block;font-size:14.5px;font-weight:600;margin-bottom:2px}
-.help p{font-size:14px;color:var(--muted);line-height:1.55}
-.help a{font-weight:600;white-space:nowrap}
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+    }
 
-.logo-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;opacity:.9}
-.logo-link:hover{opacity:1}
-.logo-link img{filter:brightness(0)}
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.92;
+      transition: opacity 0.15s;
+    }
 
-.legal{text-align:center;font-size:12.5px;color:#8a93a3;padding-top:8px}
+    .nav-link:hover {
+      opacity: 1;
+    }
 
-/* ---------- Image panel ---------- */
-.image-side{margin:10px 10px 10px 0;border-radius:16px;overflow:hidden;position:relative}
-.image-side::after{content:"";position:absolute;inset:0;background:rgba(11,60,120,.82);border-radius:16px}
-.image-content{position:absolute;inset:0;z-index:1;padding:32px;display:flex;flex-direction:column;justify-content:center;color:#fff}
-.image-logo{position:absolute;bottom:28px;left:28px;z-index:2}
-.image-logo img{filter:brightness(0) invert(1);opacity:.9}
-.image-content h2{font-size:clamp(20px,2vw,28px);font-weight:600;line-height:1.2;letter-spacing:-.015em;margin-bottom:24px}
-.image-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#ff5e00;margin-bottom:10px}
-.img-features{list-style:none;display:grid;gap:14px}
-.img-features li{display:flex;gap:12px;align-items:flex-start}
-.img-features .fi{flex:none;width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center}
-.img-features strong{display:block;font-weight:500;font-size:14px}
-.img-features span{font-size:12.5px;opacity:.75;line-height:1.5}
-.image-side > img{width:100%;height:100%;object-fit:cover;display:block;animation:zoomout 6s ease-out forwards}
-@keyframes zoomout{from{transform:scale(1.12)}to{transform:scale(1)}}
+    .header__actions {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
 
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+    .login-dropdown{position:relative}
+    .login-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.92;
+      transition: opacity 0.15s;
+      cursor:pointer;
+      background:none;border:0;font-family:'Poppins',sans-serif;padding:0
+    }
+    .login-link:hover { opacity: 1; }
+    .login-menu{position:absolute;top:calc(100% + 12px);right:0;background:#fff;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:200px;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .15s,transform .15s}
+    .login-dropdown.open .login-menu{opacity:1;pointer-events:all;transform:translateY(0)}
+    .login-menu a{display:flex;align-items:center;gap:10px;padding:13px 16px;font-size:14px;font-weight:500;color:#04182D;text-decoration:none;transition:background .12s}
+    .login-menu a:hover{background:#f5f5f5}
+    .login-menu a+a{border-top:1px solid #e8ecf0}
+    .login-menu .lm-icon{width:32px;height:32px;border-radius:8px;background:#eef3fb;color:#0b3c78;display:grid;place-items:center;flex:none}
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 56px);
+      min-height: 480px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-color: #093E78;
+    }
+
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .hero__slide.active {
+      opacity: 1;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.38);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1376px;
+      margin: 0 auto;
+      padding: 0 48px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hero__title {
+      font-size: clamp(24px, 4vw, 52px);
+      font-weight: 700;
+      color: #FCFCFC;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+      max-width: 700px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 8px 40px rgba(0,0,0,0.5);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.15s forwards;
+    }
+
+    .search__bar {
+      width: 640px;
+      display: flex;
+      background: #FCFCFC;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .search__input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+    }
+
+    .search__input-wrap svg {
+      flex-shrink: 0;
+      color: #969696;
+    }
+
+    .search__input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #04182D;
+      background: transparent;
+      padding: 18px 0;
+    }
+
+    .search__input::placeholder {
+      color: #747474;
+      font-weight: 300;
+    }
+
+    .search__btn {
+      background: #FF5E00;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      margin: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .search__btn:hover {
+      background: #CC4000;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero__indicators {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .hero__indicator {
+      width: 48px;
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.3);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero__indicator-fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .hero__indicator.active .hero__indicator-fill {
+      animation: fillProgress 8s linear forwards;
+    }
+
+    @keyframes fillProgress {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    /* ── LOGIN MODAL ── */
+    .modal-backdrop{position:fixed;inset:0;z-index:500;background:rgba(4,24,45,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .2s ease}
+    .modal-backdrop.open{opacity:1;pointer-events:all}
+    .modal-card{display:grid;grid-template-columns:1fr minmax(300px,42%);width:100%;max-width:1000px;height:min(720px,calc(100vh - 64px));border-radius:20px;box-shadow:0 32px 80px rgba(0,0,0,.35);background:#fff;overflow:hidden;transform:translateY(16px) scale(.98);transition:transform .25s ease,opacity .25s ease;opacity:0;position:relative}
+    .modal-close{position:absolute;top:16px;right:16px;z-index:10;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s;backdrop-filter:blur(4px)}
+    .modal-close:hover{background:rgba(255,255,255,.3)}
+    .modal-backdrop.open .modal-card{transform:translateY(0) scale(1);opacity:1}
+    :root{--blue:#0b3c78;--blue-d:#072a55;--blue-50:#eef3fb;--blue-100:#dbe6f6;--ink:#141a26;--muted:#5a6476;--line:#d9dfe8;--bg:#f5f5f5;--white:#fff;--err:#b42318;--err-bg:#fef3f2;--err-line:#fecdca;--radius:10px}
+
+    /* panel */
+    .m-panel{background:#fff;display:flex;flex-direction:column;padding:16px 32px;height:100%}
+    .m-form-wrap{margin:auto;width:100%;max-width:400px;padding:12px 0;display:flex;flex-direction:column;justify-content:center}
+    .m-form-wrap h2{font-family:'Poppins',sans-serif;font-size:24px;font-weight:600;letter-spacing:-.01em;margin-bottom:2px;color:var(--ink)}
+    .m-sub{color:var(--muted);font-size:14px;margin-bottom:14px;font-family:'Poppins',sans-serif}
+    .m-field{margin-bottom:10px}
+    .m-label-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+    .m-label{font-size:14px;font-weight:500;font-family:'Poppins',sans-serif;color:var(--ink)}
+    .m-input-wrap{position:relative}
+    .m-input{width:100%;font-family:'Poppins',sans-serif;font-size:14px;color:var(--ink);padding:11px 14px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:border-color .15s,box-shadow .15s;outline:none}
+    .m-input::placeholder{color:#9aa3b2}
+    .m-input:hover{border-color:#b9c2cf}
+    .m-input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,60,120,.12)}
+    .m-input-pw{padding-right:52px}
+    .m-eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--muted);width:40px;height:40px;border-radius:8px;display:grid;place-items:center;cursor:pointer}
+    .m-eye:hover{background:var(--blue-50);color:var(--ink)}
+    .m-btn{width:100%;display:flex;justify-content:center;align-items:center;gap:10px;background:var(--blue);color:#fff;border:0;border-radius:var(--radius);padding:11px;font-family:'Poppins',sans-serif;font-size:14.5px;font-weight:600;margin-top:4px;transition:background .15s;cursor:pointer}
+    .m-btn:hover{background:var(--blue-d)}
+    .m-forgot{text-align:right;margin-top:14px;margin-bottom:24px}
+    .m-forgot a{font-size:13.5px;font-weight:500;color:var(--blue);text-decoration:none}
+    .m-help{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:var(--radius);background:#fff;border:1px solid var(--line)}
+    .m-help-icon{flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue-50);color:var(--blue);display:grid;place-items:center}
+    .m-help strong{display:block;font-size:14.5px;font-weight:600;color:var(--ink);font-family:'Poppins',sans-serif;margin-bottom:2px}
+    .m-help p{font-size:14px;color:var(--muted);line-height:1.55;font-family:'Poppins',sans-serif}
+    .m-help a{font-weight:600;white-space:nowrap;color:var(--blue)}
+    .m-back{padding-bottom:20px;width:100%;max-width:400px;margin:0 auto}
+    .m-back a{font-size:13px;color:var(--blue);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px;font-family:'Poppins',sans-serif}
+
+    /* image side */
+    .m-image{margin:10px 10px 10px 0;border-radius:16px;overflow:hidden;position:relative}
+    .m-image::after{content:"";position:absolute;inset:0;background:rgba(11,60,120,.82);border-radius:16px}
+    .m-image>img{width:100%;height:100%;object-fit:cover;display:block;animation:mzoom 6s ease-out forwards}
+    @keyframes mzoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+    .m-image-logo{position:absolute;bottom:28px;left:28px;z-index:2}
+    .m-image-logo img{filter:brightness(0) invert(1);opacity:.9}
+    .m-image-content{position:absolute;inset:0;z-index:1;padding:32px;display:flex;flex-direction:column;justify-content:center;color:#fff}
+    .m-image-content h2{font-family:'Poppins',sans-serif;font-size:clamp(18px,2vw,26px);font-weight:600;line-height:1.2;letter-spacing:-.015em;margin-bottom:24px}
+    .m-features{list-style:none;display:grid;gap:14px}
+    .m-features li{display:flex;gap:12px;align-items:flex-start}
+    .m-features .fi{flex:none;width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center}
+    .m-features strong{display:block;font-weight:500;font-size:14px;font-family:'Poppins',sans-serif}
+    .m-features span{font-size:12.5px;opacity:.75;line-height:1.5;font-family:'Poppins',sans-serif}
+
+  </style>
 </head>
 <body>
-<div class="layout">
 
-  <!-- Form -->
-  <main class="panel">
-
-    <div class="form-wrap">
-      <h2>Logga in</h2>
-      <p class="sub">Välkommen tillbaka.</p>
-
-      <div class="alert" id="alert" role="alert">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 7v6M12 16.5v.5"/></svg>
-        <div><strong>Fel e-post eller lösenord.</strong><br>Saknar du konto? Mejla <a href="mailto:support@bovision.se">support@bovision.se</a> så skapar vi ett.</div>
-      </div>
-
-      <form id="form" novalidate>
-        <div class="field">
-          <div class="label-row"><label for="email">E-postadress</label></div>
-          <div class="input"><input id="email" type="email" placeholder="namn@maklarbyra.se" autocomplete="username"></div>
-        </div>
-        <div class="field">
-          <div class="label-row"><label for="pw">Lösenord</label></div>
-          <div class="input">
-            <input id="pw" type="password" placeholder="Ditt lösenord" autocomplete="current-password">
-            <button type="button" class="eye" id="eye" aria-label="Visa lösenord">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-            </button>
-          </div>
-        </div>
-        <button class="btn" id="btn" type="submit"><span class="spin"></span><span>Logga in</span></button>
-        <div style="text-align:right;margin-top:14px;margin-bottom:24px"><a href="#" style="font-size:13.5px;font-weight:500;text-decoration:none">Glömt lösenord?</a></div>
-      </form>
-
-      <div class="help">
-        <div class="hi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-        <div>
-          <strong>Saknar du konto?</strong>
-          <p>Mejla <a href="mailto:support@bovision.se">support@bovision.se</a> så ordnar vi det.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="padding-bottom:20px;width:100%;max-width:420px;margin:0 auto">
-      <a href="https://www.bovision.se" style="font-size:13px;color:var(--blue);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tillbaka till bovision.se</a>
-    </div>
-
-  </main>
-
-  <!-- Image -->
-  <div class="image-side">
-    <img src="bild2.jpg" alt="">
-    <a href="https://www.bovision.se" class="image-logo">
-        <img src="Logo.svg" alt="Bovision" height="44">
-      </a>
-    <div class="image-content">
-<h2>Portalen för mäklare och bostadsannonsörer</h2>
-      <ul class="img-features">
-        <li>
-          <div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg></div>
-          <div><strong>Intresseanmälningar</strong><span>Se vem som visat intresse för dina objekt.</span></div>
-        </li>
-        <li>
-          <div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M17 11l2 2 4-4"/></svg></div>
-          <div><strong>Leads</strong><span>Följ upp potentiella säljare och köpare.</span></div>
-        </li>
-        <li>
-          <div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/></svg></div>
-          <div><strong>Fakturering</strong><span>Överblick över fakturor och annonskostnader.</span></div>
-        </li>
-      </ul>
+  <!-- Besökare modal (placeholder) -->
+  <div class="modal-backdrop" id="besokareModal" role="dialog" aria-modal="true" aria-label="Logga in som besökare">
+    <div class="modal-card" style="display:block;height:auto;max-width:480px;padding:48px">
+      <button class="modal-close" id="closeBesokareModal" aria-label="Stäng" style="background:rgba(0,0,0,.06);color:#5a6476"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <p style="font-family:'Poppins',sans-serif;font-size:14px;color:#9aa3b2;text-align:center;padding:40px 0">Besökarinlogg — kommer snart</p>
     </div>
   </div>
 
-</div>
+  <!-- Login modal -->
+  <div class="modal-backdrop" id="loginModal" role="dialog" aria-modal="true" aria-label="Logga in">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModal" aria-label="Stäng"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <main class="m-panel">
+        <div class="m-form-wrap">
+          <h2>Logga in</h2>
+          <p class="m-sub">Välkommen tillbaka.</p>
+          <form id="mForm" novalidate>
+            <div class="m-field">
+              <div class="m-label-row"><label class="m-label" for="mEmail">E-postadress</label></div>
+              <div class="m-input-wrap"><input class="m-input" id="mEmail" type="email" placeholder="namn@maklarbyra.se" autocomplete="username"></div>
+            </div>
+            <div class="m-field">
+              <div class="m-label-row"><label class="m-label" for="mPw">Lösenord</label></div>
+              <div class="m-input-wrap">
+                <input class="m-input m-input-pw" id="mPw" type="password" placeholder="Ditt lösenord" autocomplete="current-password">
+                <button type="button" class="m-eye" id="mEye" aria-label="Visa lösenord">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <button class="m-btn" type="submit"><span>Logga in</span></button>
+            <div class="m-forgot"><a href="#">Glömt lösenord?</a></div>
+          </form>
+          <div class="m-help">
+            <div class="m-help-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+            <div>
+              <strong>Saknar du konto?</strong>
+              <p>Mejla <a href="mailto:support@bovision.se">support@bovision.se</a> så ordnar vi det.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="m-image">
+        <img src="bild2.jpg" alt="">
+        <a href="https://www.bovision.se" class="m-image-logo"><img src="Logo.svg" alt="Bovision" height="40"></a>
+        <div class="m-image-content">
+          <h2>Portalen för mäklare och bostadsannonsörer</h2>
+          <ul class="m-features">
+            <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg></div><div><strong>Intresseanmälningar</strong><span>Se vem som visat intresse för dina objekt.</span></div></li>
+            <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M17 11l2 2 4-4"/></svg></div><div><strong>Leads</strong><span>Följ upp potentiella säljare och köpare.</span></div></li>
+            <li><div class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/></svg></div><div><strong>Fakturering</strong><span>Överblick över fakturor och annonskostnader.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header__inner">
+
+      <div class="header__logo">
+        <span class="logo-text">BOVISION</span>
+      </div>
+
+      <nav class="header__nav">
+        <a href="#" class="nav-link">Sök bostad</a>
+        <a href="#" class="nav-link">
+          Tjänster
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+            <path d="M1 1l5 5 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#" class="nav-link">Inspiration</a>
+      </nav>
+
+      <div class="header__actions">
+        <div class="login-dropdown" id="loginDropdown">
+          <button class="login-link" id="loginToggle" aria-haspopup="true" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Logga in
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="login-menu" role="menu">
+            <a href="#" id="openBesokareModal" role="menuitem">
+              <div class="lm-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+              Som besökare
+            </a>
+            <a href="#" id="openMaklarModal" role="menuitem">
+              <div class="lm-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              Som mäklare
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="hero__slide active" style="background-image: url('hero1.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('hero2.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('hero3.jpg')"></div>
+      <div class="hero__slide" style="background-image: url('hero4.jpg')"></div>
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__indicators">
+      <div class="hero__indicator active"><div class="hero__indicator-fill"></div></div>
+      <div class="hero__indicator"><div class="hero__indicator-fill"></div></div>
+      <div class="hero__indicator"><div class="hero__indicator-fill"></div></div>
+      <div class="hero__indicator"><div class="hero__indicator-fill"></div></div>
+    </div>
+
+    <div class="hero__content">
+      <h1 class="hero__title">Sök bland tusentals bostäder i Sverige och utomlands</h1>
+
+      <div class="search__bar">
+        <div class="search__input-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input class="search__input" type="text" placeholder="Stad, område eller adress…">
+        </div>
+        <button class="search__btn">Sök</button>
+      </div>
+    </div>
+  </section>
 
 <script>
-const pw=document.getElementById('pw'),eye=document.getElementById('eye');
-eye.onclick=()=>{const s=pw.type==='password';pw.type=s?'text':'password';eye.setAttribute('aria-label',s?'Dölj lösenord':'Visa lösenord');eye.style.color=s?'var(--blue)':'';};
-document.getElementById('form').onsubmit=e=>{
-  e.preventDefault();const btn=document.getElementById('btn');btn.classList.add('loading');
-  setTimeout(()=>{btn.classList.remove('loading');document.getElementById('alert').classList.add('on');
-    document.querySelectorAll('.field').forEach(f=>f.classList.add('has-err'));pw.value='';pw.focus();},700);
-};
-document.querySelectorAll('input').forEach(i=>i.oninput=()=>i.closest('.field').classList.remove('has-err'));
+  const slides = document.querySelectorAll('.hero__slide');
+  const indicators = document.querySelectorAll('.hero__indicator');
+  let current = 0;
+
+  function goTo(index) {
+    const prev = current;
+    slides[prev].classList.remove('active');
+    indicators[prev].classList.remove('active');
+
+    // Håll passerade indikatorer fyllda
+    const prevFill = indicators[prev].querySelector('.hero__indicator-fill');
+    prevFill.style.animation = 'none';
+    prevFill.style.width = index > prev ? '100%' : '0%';
+
+    current = index % slides.length;
+    slides[current].classList.add('active');
+    indicators[current].classList.add('active');
+
+    const fill = indicators[current].querySelector('.hero__indicator-fill');
+    fill.style.animation = 'none';
+    fill.style.width = '0%';
+    fill.offsetHeight;
+    fill.style.animation = 'fillProgress 8s linear forwards';
+  }
+
+  indicators.forEach((ind, i) => ind.addEventListener('click', () => {
+    clearInterval(timer);
+    goTo(i);
+    timer = setInterval(() => goTo(current + 1), 8000);
+  }));
+
+  let timer = setInterval(() => goTo(current + 1), 8000);
+
+  // Dropdown
+  const dropdown = document.getElementById('loginDropdown');
+  const toggle = document.getElementById('loginToggle');
+  toggle.addEventListener('click', e => { e.stopPropagation(); dropdown.classList.toggle('open'); toggle.setAttribute('aria-expanded', dropdown.classList.contains('open')); });
+  document.addEventListener('click', () => dropdown.classList.remove('open'));
+
+  // Mäklarportal modal
+  const modal = document.getElementById('loginModal');
+  document.getElementById('openMaklarModal').addEventListener('click', e => { e.preventDefault(); dropdown.classList.remove('open'); openModal(); });
+  document.getElementById('closeModal').addEventListener('click', () => closeModal());
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+
+  // Besökare modal
+  const bModal = document.getElementById('besokareModal');
+  document.getElementById('openBesokareModal').addEventListener('click', e => { e.preventDefault(); dropdown.classList.remove('open'); bModal.classList.add('open'); document.body.style.overflow='hidden'; });
+  document.getElementById('closeBesokareModal').addEventListener('click', () => { bModal.classList.remove('open'); document.body.style.overflow=''; });
+  bModal.addEventListener('click', e => { if(e.target === bModal){ bModal.classList.remove('open'); document.body.style.overflow=''; } });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeModal(); bModal.classList.remove('open'); document.body.style.overflow=''; } });
+
+  // Visa/dölj lösenord i modal
+  document.getElementById('mEye').onclick = () => {
+    const p = document.getElementById('mPw');
+    const s = p.type === 'password';
+    p.type = s ? 'text' : 'password';
+    document.getElementById('mEye').setAttribute('aria-label', s ? 'Dölj lösenord' : 'Visa lösenord');
+  };
 </script>
 </body>
 </html>
